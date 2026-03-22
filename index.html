@@ -12,83 +12,55 @@
   * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
   body { background:var(--bg); display:flex; flex-direction:column; align-items:center; height:100dvh; overflow:hidden; font-family:'Segoe UI',sans-serif; color:#fff; touch-action:none; }
 
-  .screen { position:fixed; inset:0; z-index:100; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; overflow-y:auto; padding:20px 16px 28px; gap:14px; background:linear-gradient(160deg,#0f0800,#1a0e00 60%,#0f0800); }
+  .screen { position:fixed; inset:0; z-index:100; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; overflow-y:auto; padding:16px 16px 24px; gap:12px; background:linear-gradient(160deg,#0f0800,#1a0e00 60%,#0f0800); }
   .screen.hidden { display:none; }
 
+  /* LOGO */
   .logo-wrap { display:flex; flex-direction:column; align-items:center; gap:2px; margin-top:4px; }
   .logo-blocks { display:flex; gap:3px; }
-  .lb { width:16px; height:16px; border-radius:3px; }
-  .logo-wrap h1 { font-size:44px; font-weight:900; letter-spacing:6px; background:linear-gradient(135deg,var(--accent),var(--accent2),#fff6); -webkit-background-clip:text; -webkit-text-fill-color:transparent; filter:drop-shadow(0 0 18px var(--accent)); }
-  .logo-wrap .subtitle { font-size:9px; color:#553300; letter-spacing:3px; text-transform:uppercase; margin-top:-10px; }
+  .lb { width:14px; height:14px; border-radius:3px; }
+  .logo-wrap h1 { font-size:40px; font-weight:900; letter-spacing:6px; background:linear-gradient(135deg,var(--accent),var(--accent2),#fff6); -webkit-background-clip:text; -webkit-text-fill-color:transparent; filter:drop-shadow(0 0 18px var(--accent)); }
+  .logo-wrap .subtitle { font-size:9px; color:#553300; letter-spacing:3px; text-transform:uppercase; margin-top:-8px; }
 
-  .player-badge { display:flex; align-items:center; gap:10px; background:var(--panel); border:1px solid var(--border); border-radius:14px; padding:10px 14px; width:100%; max-width:340px; cursor:pointer; transition:border-color .2s; }
-  .player-badge:hover { border-color:var(--accent); }
-  .player-badge .pb-label { font-size:9px; color:#664400; text-transform:uppercase; letter-spacing:1px; }
-  .player-badge .pb-sig { display:flex; align-items:center; gap:3px; flex:1; min-height:22px; }
-  .player-badge .pb-edit { font-size:11px; color:#664400; white-space:nowrap; }
+  /* SECTION LABEL */
+  .section-label { width:100%; max-width:340px; font-size:9px; text-transform:uppercase; letter-spacing:2px; color:#664400; padding-left:2px; }
 
-  .menu-btn { width:100%; max-width:340px; padding:13px; background:linear-gradient(135deg,var(--accent),#b85c00); border:none; border-radius:14px; color:#fff; font-size:15px; font-weight:900; cursor:pointer; box-shadow:0 4px 20px var(--glow); letter-spacing:2px; text-transform:uppercase; }
-  .menu-btn.secondary { background:linear-gradient(135deg,#2a1500,#1a0d00); border:2px solid var(--border); color:var(--accent2); box-shadow:none; font-size:13px; letter-spacing:1px; }
+  /* MODE SELECTOR */
+  .mode-row { display:flex; gap:8px; width:100%; max-width:340px; }
+  .mode-opt { flex:1; padding:10px 6px; background:var(--panel); border:2px solid var(--border); border-radius:12px; cursor:pointer; text-align:center; transition:border-color .2s,background .2s,box-shadow .2s; }
+  .mode-opt.selected { border-color:var(--accent); background:#2a1400; box-shadow:0 0 14px var(--glow); }
+  .mode-opt .icon { font-size:22px; display:block; margin-bottom:3px; }
+  .mode-opt .label { font-size:11px; font-weight:bold; color:#ddd; }
+  .mode-opt .desc { font-size:9px; color:#554433; margin-top:2px; }
+
+  /* MECHANICS */
+  .mech-grid { display:flex; gap:8px; width:100%; max-width:340px; flex-wrap:wrap; }
+  .mech-opt { flex:1; min-width:90px; display:flex; align-items:center; gap:8px; background:var(--panel); border:2px solid var(--border); border-radius:12px; padding:10px 12px; cursor:pointer; transition:border-color .2s,background .2s,box-shadow .2s; }
+  .mech-opt.selected { border-color:var(--accent); background:#2a1400; box-shadow:0 0 10px var(--glow); }
+  .mech-opt .msvg { flex-shrink:0; }
+  .mech-opt .mlabel { font-size:11px; font-weight:bold; color:#ccc; line-height:1.3; }
+  .mech-opt .mdesc { font-size:9px; color:#554433; }
+  .mech-check { margin-left:auto; width:18px; height:18px; border-radius:50%; border:2px solid var(--border); flex-shrink:0; transition:background .2s,border-color .2s; }
+  .mech-opt.selected .mech-check { background:var(--accent); border-color:var(--accent); }
+
+  /* BUTTONS */
+  .menu-btn { width:100%; max-width:340px; padding:14px; background:linear-gradient(135deg,var(--accent),#b85c00); border:none; border-radius:14px; color:#fff; font-size:16px; font-weight:900; cursor:pointer; box-shadow:0 4px 20px var(--glow); letter-spacing:2px; text-transform:uppercase; }
+  .menu-btn.secondary { background:linear-gradient(135deg,#2a1500,#1a0d00); border:2px solid var(--border); color:var(--accent2); box-shadow:none; font-size:12px; letter-spacing:1px; padding:11px; }
   .menu-row { display:flex; gap:8px; width:100%; max-width:340px; }
-  .menu-row .menu-btn { flex:1; padding:11px 6px; font-size:12px; }
+  .menu-row .menu-btn { flex:1; }
 
-  .ranking-wrap { width:100%; max-width:340px; }
-  .ranking-wrap h2 { font-size:10px; text-transform:uppercase; letter-spacing:2px; color:#664400; margin-bottom:8px; display:flex; align-items:center; gap:6px; }
-  .online-dot { width:7px; height:7px; border-radius:50%; background:#0f8; box-shadow:0 0 6px #0f8; display:inline-block; animation:pulse 2s infinite; }
-  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-  .rank-table { width:100%; border-collapse:collapse; }
-  .rank-table th { font-size:9px; text-transform:uppercase; letter-spacing:1px; color:#553300; padding:4px 6px; border-bottom:1px solid var(--border); text-align:left; }
-  .rank-table th:last-child { text-align:right; }
-  .rank-table td { padding:5px 6px; border-bottom:1px solid #1a1000; vertical-align:middle; }
-  .rank-table td:last-child { text-align:right; color:var(--accent2); font-weight:bold; font-size:12px; }
-  .rank-table tr:first-child td:last-child { color:#ffd700; }
-  .rank-empty { text-align:center; color:#443322; font-size:12px; padding:16px 0; }
-  .rank-mode-tag { font-size:9px; color:#664400; background:#1a1000; border:1px solid var(--border); border-radius:4px; padding:1px 4px; }
-  .rank-sig { display:flex; align-items:center; gap:2px; }
-
-  .settings-header { display:flex; align-items:center; gap:10px; width:100%; max-width:340px; margin-top:4px; flex-shrink:0; }
-  .settings-header h2 { font-size:17px; font-weight:bold; color:var(--accent2); }
-  .back-btn { background:none; border:1px solid var(--border); border-radius:8px; color:#886600; font-size:13px; padding:7px 12px; cursor:pointer; white-space:nowrap; }
-  .cfg-group { width:100%; max-width:340px; background:var(--panel); border:1px solid var(--border); border-radius:14px; overflow:hidden; }
-  .cfg-group-title { font-size:10px; text-transform:uppercase; letter-spacing:2px; color:#886600; padding:10px 14px 8px; border-bottom:1px solid var(--border); }
-  .toggle-row { display:flex; flex-direction:column; }
-  .toggle-item { display:flex; align-items:center; justify-content:space-between; padding:13px 14px; border-bottom:1px solid #1f1200; gap:12px; flex-shrink:0; }
-  .toggle-item:last-child { border-bottom:none; }
-  .toggle-item .tlabel { font-size:14px; color:#eee; font-weight:500; }
-  .toggle-item .tdesc { font-size:11px; color:#665533; margin-top:3px; line-height:1.4; }
-  .switch { width:48px; height:28px; background:#1a1000; border:1px solid #3a2200; border-radius:14px; position:relative; cursor:pointer; flex-shrink:0; transition:background .2s,border-color .2s; }
-  .switch.on { background:var(--accent); border-color:var(--accent); }
-  .switch::after { content:''; position:absolute; top:4px; left:4px; width:18px; height:18px; background:#fff; border-radius:50%; transition:transform .2s; box-shadow:0 1px 4px #0008; }
-  .switch.on::after { transform:translateX(20px); }
-  .option-row { display:flex; gap:10px; padding:12px; overflow-x:auto; }
-  .opt { flex:1; min-width:85px; padding:12px 6px; background:#0f0800; border:2px solid var(--border); border-radius:12px; cursor:pointer; text-align:center; transition:border-color .2s,background .2s,box-shadow .2s; }
-  .opt.selected { border-color:var(--accent); background:#2a1400; box-shadow:0 0 14px var(--glow); }
-  .opt .icon { font-size:24px; display:block; margin-bottom:5px; }
-  .opt .label { font-size:12px; font-weight:bold; color:#ddd; }
-  .opt .desc { font-size:10px; color:#665533; margin-top:3px; }
-
-  .credit { display:flex; align-items:center; gap:8px; font-size:10px; color:#443322; }
-  .claude-logo { width:22px; height:22px; border-radius:50%; background:linear-gradient(135deg,#cc785c,#d4956a); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-  .claude-logo svg { width:14px; height:14px; }
+  /* CREDIT */
+  .credit { display:flex; align-items:center; gap:8px; font-size:10px; color:#443322; margin-top:4px; }
+  .claude-logo { width:20px; height:20px; border-radius:50%; background:linear-gradient(135deg,#cc785c,#d4956a); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .claude-logo svg { width:12px; height:12px; }
   .credit strong { color:#997755; }
 
-  /* MODALS */
-  .modal { position:fixed; inset:0; z-index:200; background:rgba(5,2,0,0.96); display:none; flex-direction:column; align-items:center; justify-content:center; gap:14px; padding:24px 20px; overflow-y:auto; }
+  /* INFO MODAL */
+  .modal { position:fixed; inset:0; z-index:200; background:rgba(5,2,0,0.96); display:none; flex-direction:column; align-items:center; justify-content:flex-start; gap:12px; padding:16px; overflow-y:auto; }
   .modal.show { display:flex; }
-  .modal h2 { font-size:20px; font-weight:900; color:var(--accent2); text-align:center; }
-  .modal p { font-size:12px; color:#997755; text-align:center; line-height:1.6; max-width:300px; }
-  .sig-builder { display:flex; gap:7px; justify-content:center; width:100%; max-width:340px; }
-  .sig-slot { display:flex; flex-direction:column; align-items:center; gap:4px; background:var(--panel); border:2px solid var(--border); border-radius:12px; padding:7px 4px; width:56px; flex-shrink:0; }
-  .slot-controls { display:flex; gap:3px; }
-  .slot-btn { background:#2a1500; border:1px solid var(--border); border-radius:6px; color:var(--accent2); font-size:10px; padding:3px 6px; cursor:pointer; line-height:1.4; }
-  .slot-btn:active { background:#3a2000; }
-  .slot-piece-nav { display:flex; align-items:center; gap:2px; }
-  .slot-piece-nav span { font-size:9px; color:#664400; min-width:14px; text-align:center; }
-  .sig-preview { display:flex; align-items:center; gap:4px; min-height:24px; }
-  .modal-btn { width:100%; max-width:300px; padding:13px; background:linear-gradient(135deg,var(--accent),#b85c00); border:none; border-radius:12px; color:#fff; font-size:14px; font-weight:900; cursor:pointer; letter-spacing:1px; }
-  .skip-btn { background:none; border:none; color:#443322; font-size:12px; cursor:pointer; text-decoration:underline; }
-
-  /* INFO */
+  .modal-header { display:flex; align-items:center; gap:10px; width:100%; max-width:340px; }
+  .modal-header h2 { font-size:15px; font-weight:bold; color:var(--accent2); }
+  .back-btn { background:none; border:1px solid var(--border); border-radius:8px; color:#886600; font-size:13px; padding:7px 12px; cursor:pointer; white-space:nowrap; }
   .info-section { width:100%; max-width:340px; background:var(--panel); border:1px solid var(--border); border-radius:12px; padding:12px 14px; }
   .info-section h3 { font-size:11px; color:var(--accent2); text-transform:uppercase; letter-spacing:1px; margin-bottom:8px; }
   .info-section p,.info-section li { font-size:12px; color:#997755; line-height:1.7; }
@@ -101,7 +73,7 @@
   #pwa-banner .pwa-text { flex:1; }
   #pwa-banner .pwa-text b { display:block; font-size:13px; color:#fff; }
   #pwa-banner .pwa-text span { font-size:11px; color:#886644; }
-  #pwa-banner .pwa-btn { padding:8px 14px; background:var(--accent); border:none; border-radius:8px; color:#fff; font-size:12px; font-weight:bold; cursor:pointer; white-space:nowrap; }
+  #pwa-banner .pwa-btn { padding:8px 14px; background:var(--accent); border:none; border-radius:8px; color:#fff; font-size:12px; font-weight:bold; cursor:pointer; }
   #pwa-banner .pwa-close { background:none; border:none; color:#664400; font-size:18px; cursor:pointer; padding:4px; }
 
   /* GAME */
@@ -111,8 +83,6 @@
   .stat { text-align:center; min-width:36px; }
   .stat span { display:block; font-size:7px; letter-spacing:1px; color:#664400; text-transform:uppercase; }
   .stat b { font-size:13px; color:var(--accent2); }
-  .stat b.gold { color:#ffd700; }
-  .topbar-sig { display:flex; align-items:center; gap:2px; background:#0f0800; border:1px solid var(--border); border-radius:8px; padding:2px 6px; min-height:26px; }
   #btn-menu-game { padding:4px 8px; background:transparent; border:1px solid var(--border); border-radius:8px; color:#664400; font-size:10px; cursor:pointer; flex-shrink:0; }
   #game-area { display:flex; flex-direction:row; align-items:flex-start; justify-content:center; flex:1; width:100%; padding:5px; gap:7px; overflow:hidden; }
   #canvas-wrap { position:relative; flex-shrink:0; }
@@ -128,128 +98,131 @@
   .btn { height:52px; min-width:56px; background:linear-gradient(160deg,#2a1500,#1a0d00); border:2px solid #3a2200; border-radius:13px; color:var(--accent2); font-size:22px; display:flex; align-items:center; justify-content:center; cursor:pointer; user-select:none; box-shadow:0 4px 0 #00000099; transition:transform .07s,box-shadow .12s,background .07s,border-color .07s; -webkit-touch-callout:none; }
   .btn:active,.btn.pressed { transform:translateY(3px); box-shadow:0 1px 0 #00000099,0 0 14px 2px var(--glow); background:#3a1a00; border-color:var(--accent); }
   .btn.wide { min-width:128px; font-size:12px; font-weight:bold; letter-spacing:1px; gap:5px; color:#fff; background:linear-gradient(135deg,#b85c00,#7a3a00); border-color:#cc6600; }
-  .btn.wide:active,.btn.wide.pressed { background:#aa5000; box-shadow:0 1px 0 #00000099,0 0 18px 3px #ff8c0077; }
+  .btn.wide:active,.btn.wide.pressed { background:#aa5000; }
   .btn.sm { min-width:50px; font-size:16px; }
   #particle-canvas { position:absolute; top:0; left:0; pointer-events:none; z-index:5; }
   #flash { position:fixed; inset:0; pointer-events:none; opacity:0; background:rgba(255,140,0,0.1); transition:opacity .15s; z-index:10; }
-
-  /* Desktop keyboard hint */
   #desktop-hint { display:none; padding:6px 0 2px; font-size:11px; color:#443322; text-align:center; flex-shrink:0; background:#0d0600; border-top:1px solid var(--border); width:100%; }
 </style>
 </head>
 <body>
 <div id="flash"></div>
 
-<!-- PWA BANNER -->
+<!-- PWA -->
 <div id="pwa-banner">
   <div class="pwa-icon">🎮</div>
-  <div class="pwa-text"><b>Adicionar à tela inicial</b><span>Jogue offline como um app!</span></div>
+  <div class="pwa-text"><b>Adicionar à tela inicial</b><span>Jogue como um app!</span></div>
   <button class="pwa-btn" id="pwa-install">Instalar</button>
   <button class="pwa-close" id="pwa-close">✕</button>
 </div>
 
-<!-- NAME SETUP MODAL -->
-<div id="name-setup-modal" class="modal">
-  <div style="font-size:48px">🎮</div>
-  <h2>Bem-vindo ao Tetris!</h2>
-  <p>Monte sua assinatura com peças do Tetris. Ela vai te identificar no ranking!</p>
-  <div class="sig-builder" id="setup-sig-builder"></div>
-  <p style="font-size:11px;color:#554433">Prévia:</p>
-  <div class="sig-preview" id="setup-sig-preview"></div>
-  <button class="modal-btn" id="btn-setup-save">🚀 ENTRAR NO JOGO</button>
-</div>
-
-<!-- SIG EDIT MODAL -->
-<div id="sig-modal" class="modal">
-  <h2>Editar Assinatura</h2>
-  <p>Escolha suas peças favoritas</p>
-  <div class="sig-builder" id="sig-builder"></div>
-  <p style="font-size:11px;color:#554433">Prévia:</p>
-  <div class="sig-preview" id="sig-preview"></div>
-  <button class="modal-btn" id="btn-sig-save">💾 SALVAR</button>
-  <button class="skip-btn" id="btn-sig-skip">Cancelar</button>
-</div>
-
 <!-- INFO MODAL -->
-<div id="info-modal" class="modal" style="justify-content:flex-start;padding-top:16px;">
-  <div class="settings-header">
+<div id="info-modal" class="modal">
+  <div class="modal-header">
     <button class="back-btn" id="btn-info-close">← Voltar</button>
-    <h2 style="font-size:15px">ℹ️ Como Jogar</h2>
+    <h2>ℹ️ Como Jogar</h2>
   </div>
   <div class="info-section"><h3>🎯 Objetivo</h3><p>Encaixe as peças para formar linhas horizontais completas. Linhas completas somem e você ganha pontos. O jogo acaba quando as peças chegam ao topo!</p></div>
   <div class="info-section"><h3>📱 Controles Mobile</h3><ul><li><strong>◀ ▶</strong> — Mover</li><li><strong>↻</strong> — Girar</li><li><strong>▼</strong> — Descer rápido</li><li><strong>⬇ DROP</strong> — Cair direto</li><li><strong>📦</strong> — Guardar peça</li><li><strong>⏸</strong> — Pausar</li></ul></div>
-  <div class="info-section"><h3>⌨️ Teclado (Desktop)</h3><ul><li><span class="key">←</span><span class="key">→</span> Mover &nbsp;<span class="key">↑</span> Girar &nbsp;<span class="key">↓</span> Descer</li><li><span class="key">Espaço</span> Drop &nbsp;<span class="key">C</span> Guardar &nbsp;<span class="key">P</span> Pausar</li></ul></div>
-  <div class="info-section"><h3>⭐ Pontuação</h3><ul><li>1 linha = <strong>100×nível</strong></li><li>2 linhas = <strong>300×nível</strong></li><li>3 linhas = <strong>500×nível</strong></li><li>4 linhas = <strong>800×nível</strong> 🎉</li></ul></div>
+  <div class="info-section"><h3>⌨️ Teclado</h3><ul><li><span class="key">←</span><span class="key">→</span> Mover &nbsp;<span class="key">↑</span> Girar &nbsp;<span class="key">↓</span> Descer</li><li><span class="key">Espaço</span> Drop &nbsp;<span class="key">C</span> Guardar &nbsp;<span class="key">P</span> Pausar</li></ul></div>
+  <div class="info-section"><h3>⭐ Pontuação</h3><ul><li>1 linha = <strong>100×nível</strong></li><li>2 = <strong>300×nível</strong> &nbsp; 3 = <strong>500×nível</strong></li><li>4 linhas (Tetris!) = <strong>800×nível</strong> 🎉</li></ul></div>
   <div class="info-section"><h3>🎮 Modos</h3><ul><li><strong>🕹️ Clássico</strong> — sobe de nível a cada 10 linhas</li><li><strong>⚡ Sprint</strong> — 40 linhas o mais rápido</li><li><strong>🔥 Survival</strong> — velocidade sem fim</li></ul></div>
   <div class="info-section" style="text-align:center"><h3>🧡 Créditos</h3><p>Por <strong style="color:var(--accent2)">Pedro</strong> &amp; <strong style="color:var(--accent2)">Claude</strong></p></div>
 </div>
 
 <!-- MAIN MENU -->
-<div id="screen-menu" class="screen hidden">
+<div id="screen-menu" class="screen">
   <div class="logo-wrap">
     <div class="logo-blocks"><div class="lb" style="background:#ff8c00"></div><div class="lb" style="background:#ffb347"></div><div class="lb" style="background:#ff6600"></div><div class="lb" style="background:#ffd700"></div></div>
-    <div class="logo-blocks" style="margin-left:19px"><div class="lb" style="background:#ff8c00"></div><div class="lb" style="background:#ff6600"></div><div class="lb" style="background:#ffb347"></div></div>
+    <div class="logo-blocks" style="margin-left:17px"><div class="lb" style="background:#ff8c00"></div><div class="lb" style="background:#ff6600"></div><div class="lb" style="background:#ffb347"></div></div>
     <h1>TETRIS</h1>
     <div class="subtitle">edição especial</div>
   </div>
-  <div class="player-badge" id="player-badge">
-    <div><div class="pb-label">Jogador atual</div><div class="pb-sig" id="pb-sig-display"></div></div>
-    <div class="pb-edit">✏️ Editar</div>
+
+  <!-- MODE -->
+  <div class="section-label">🎮 Modo de jogo</div>
+  <div class="mode-row">
+    <div class="mode-opt selected" data-mode="classic"><span class="icon">🕹️</span><div class="label">Clássico</div><div class="desc">Tradicional</div></div>
+    <div class="mode-opt" data-mode="sprint"><span class="icon">⚡</span><div class="label">Sprint</div><div class="desc">40 linhas</div></div>
+    <div class="mode-opt" data-mode="survival"><span class="icon">🔥</span><div class="label">Survival</div><div class="desc">Vel. máxima</div></div>
   </div>
+
+  <!-- MECHANICS -->
+  <div class="section-label">🧩 Mecânicas</div>
+  <div class="mech-grid">
+    <!-- HOLD -->
+    <div class="mech-opt selected" data-mech="hold">
+      <svg class="msvg" width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <!-- Alças -->
+        <path d="M10 8 Q10 3 14 3 Q18 3 18 8" stroke="#ffb347" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+        <!-- Corpo da mochila -->
+        <rect x="5" y="8" width="18" height="17" rx="4" fill="#ffb347"/>
+        <!-- Bolso frontal -->
+        <rect x="8" y="16" width="12" height="7" rx="2.5" fill="#cc7700" opacity="0.7"/>
+        <!-- Zíper bolso -->
+        <path d="M10 19.5 H18" stroke="#ffb347" stroke-width="1.3" stroke-linecap="round"/>
+        <circle cx="18" cy="19.5" r="1.2" fill="#ffb347"/>
+        <!-- Zíper principal -->
+        <path d="M7 13 H21" stroke="#cc7700" stroke-width="1.3" stroke-linecap="round" opacity="0.8"/>
+      </svg>
+      <div><div class="mlabel">Guardar</div><div class="mdesc">Segurar peça</div></div>
+      <div class="mech-check"></div>
+    </div>
+    <!-- GHOST -->
+    <div class="mech-opt selected" data-mech="ghost">
+      <svg class="msvg" width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <rect x="4" y="6" width="7" height="7" rx="1.5" fill="#ffb347" opacity="0.2" stroke="#ffb347" stroke-width="1.5" stroke-dasharray="2 2"/>
+        <rect x="4" y="14" width="7" height="7" rx="1.5" fill="#ffb347" opacity="0.2" stroke="#ffb347" stroke-width="1.5" stroke-dasharray="2 2"/>
+        <rect x="12" y="14" width="7" height="7" rx="1.5" fill="#ffb347" opacity="0.2" stroke="#ffb347" stroke-width="1.5" stroke-dasharray="2 2"/>
+        <rect x="8" y="2" width="7" height="7" rx="1.5" fill="#ffb347"/>
+        <rect x="16" y="2" width="7" height="7" rx="1.5" fill="#ffb347"/>
+        <rect x="8" y="10" width="7" height="7" rx="1.5" fill="#ffb347"/>
+      </svg>
+      <div><div class="mlabel">Fantasma</div><div class="mdesc">Mostra onde cai</div></div>
+      <div class="mech-check"></div>
+    </div>
+    <!-- 7-BAG -->
+    <div class="mech-opt selected" data-mech="bag">
+      <svg class="msvg" width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <rect x="2" y="12" width="5" height="5" rx="1" fill="#ff4422"/>
+        <rect x="8" y="12" width="5" height="5" rx="1" fill="#00ccff"/>
+        <rect x="14" y="12" width="5" height="5" rx="1" fill="#ffaa00"/>
+        <rect x="20" y="12" width="5" height="5" rx="1" fill="#00ff88"/>
+        <rect x="5" y="19" width="5" height="5" rx="1" fill="#aa00ff"/>
+        <rect x="11" y="19" width="5" height="5" rx="1" fill="#ffee00"/>
+        <rect x="17" y="19" width="5" height="5" rx="1" fill="#ff8800"/>
+        <path d="M5 11 Q14 3 23 11" stroke="#ffb347" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.5"/>
+      </svg>
+      <div><div class="mlabel">7-Bag</div><div class="mdesc">Peças justas</div></div>
+      <div class="mech-check"></div>
+    </div>
+    <!-- RETRO -->
+    <div class="mech-opt" data-mech="retro">
+      <svg class="msvg" width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <rect x="2" y="4" width="24" height="20" rx="3" fill="#306230" stroke="#0f380f" stroke-width="1.5"/>
+        <rect x="5" y="7" width="18" height="12" rx="1.5" fill="#8bac0f"/>
+        <rect x="7" y="9" width="5" height="5" rx="1" fill="#0f380f"/>
+        <rect x="7" y="15" width="5" height="2" rx="0.5" fill="#0f380f" opacity="0.5"/>
+        <rect x="13" y="9" width="9" height="2" rx="0.5" fill="#0f380f" opacity="0.6"/>
+        <rect x="13" y="12" width="9" height="2" rx="0.5" fill="#0f380f" opacity="0.4"/>
+        <rect x="13" y="15" width="6" height="2" rx="0.5" fill="#0f380f" opacity="0.3"/>
+      </svg>
+      <div><div class="mlabel">Retrô</div><div class="mdesc">Visual Game Boy</div></div>
+      <div class="mech-check"></div>
+    </div>
+  </div>
+
   <button class="menu-btn" id="btn-play">▶ JOGAR AGORA</button>
+
   <div class="menu-row">
-    <button class="menu-btn secondary" id="btn-open-settings">⚙️ Config.</button>
     <button class="menu-btn secondary" id="btn-open-info">ℹ️ Como Jogar</button>
+    <button class="menu-btn secondary" id="btn-open-sound">🔊 Som: ON</button>
   </div>
-  <div class="ranking-wrap">
-    <h2>🏆 Hall da Fama <span class="online-dot"></span><span style="font-size:9px;color:#446644;font-weight:normal;text-transform:none;letter-spacing:0">online</span></h2>
-    <table class="rank-table">
-      <thead><tr><th>#</th><th>Assinatura</th><th>Modo</th><th>Pontos</th></tr></thead>
-      <tbody id="rank-body"><tr><td colspan="4" class="rank-empty">Carregando... ⏳</td></tr></tbody>
-    </table>
-  </div>
+
   <div class="credit">
     <div class="claude-logo"><svg viewBox="0 0 24 24" fill="none"><path d="M13.827 3.52l5.897 14.56h-3.238l-1.18-3.065H9.78l-1.165 3.064H5.376L11.273 3.52h2.554zm-1.267 4.02l-1.832 4.83h3.664l-1.832-4.83z" fill="white"/></svg></div>
     <span>Feito com 🧡 por <strong>Pedro</strong> &amp; <strong>Claude</strong></span>
   </div>
-</div>
-
-<!-- SETTINGS -->
-<div id="screen-settings" class="screen hidden">
-  <div class="settings-header">
-    <button class="back-btn" id="btn-back-settings">← Voltar</button>
-    <h2>⚙️ Configurações</h2>
-  </div>
-  <div class="cfg-group">
-    <div class="cfg-group-title">🎮 Modo de jogo</div>
-    <div class="option-row">
-      <div class="opt selected" data-mode="classic"><span class="icon">🕹️</span><div class="label">Clássico</div><div class="desc">Tradicional</div></div>
-      <div class="opt" data-mode="sprint"><span class="icon">⚡</span><div class="label">Sprint</div><div class="desc">40 linhas</div></div>
-      <div class="opt" data-mode="survival"><span class="icon">🔥</span><div class="label">Survival</div><div class="desc">Vel. máxima</div></div>
-    </div>
-  </div>
-  <div class="cfg-group">
-    <div class="cfg-group-title">🧩 Mecânicas</div>
-    <div class="toggle-row">
-      <div class="toggle-item"><div><div class="tlabel">📦 Guardar peça</div><div class="tdesc">Segure uma peça para usar depois</div></div><div class="switch on" id="tog-hold"></div></div>
-      <div class="toggle-item"><div><div class="tlabel">👻 Peça fantasma</div><div class="tdesc">Mostra onde a peça vai cair</div></div><div class="switch on" id="tog-ghost"></div></div>
-      <div class="toggle-item"><div><div class="tlabel">🎲 7-Bag</div><div class="tdesc">Distribui peças equilibradamente</div></div><div class="switch on" id="tog-bag"></div></div>
-    </div>
-  </div>
-  <div class="cfg-group">
-    <div class="cfg-group-title">🔊 Áudio &amp; Tato</div>
-    <div class="toggle-row">
-      <div class="toggle-item"><div><div class="tlabel">🔊 Sons</div><div class="tdesc">Efeitos sonoros sintetizados</div></div><div class="switch on" id="tog-sound"></div></div>
-      <div class="toggle-item"><div><div class="tlabel">📳 Vibração</div><div class="tdesc">Vibra ao limpar linhas (mobile)</div></div><div class="switch on" id="tog-vib"></div></div>
-    </div>
-  </div>
-  <div class="cfg-group">
-    <div class="cfg-group-title">🎨 Visual</div>
-    <div class="toggle-row">
-      <div class="toggle-item"><div><div class="tlabel">🕹️ Modo Retrô</div><div class="tdesc">Visual Game Boy — verde monocromático</div></div><div class="switch" id="tog-retro"></div></div>
-    </div>
-  </div>
-  <button class="menu-btn" id="btn-save-settings">✔ Salvar e Voltar</button>
 </div>
 
 <!-- GAME -->
@@ -257,13 +230,12 @@
   <div id="topbar">
     <div class="stats">
       <div class="stat"><span>Pts</span><b id="score">0</b></div>
-      <div class="stat"><span>Rec</span><b id="hi" class="gold">0</b></div>
+      <div class="stat"><span>Rec</span><b id="hi" style="color:#ffd700">0</b></div>
       <div class="stat" id="stat-lines"><span>Lin</span><b id="lines">0</b></div>
       <div class="stat" id="stat-timer" style="display:none"><span>Tempo</span><b id="timer">0:00</b></div>
       <div class="stat"><span>Nív</span><b id="level">1</b></div>
     </div>
-    <div class="topbar-sig" id="topbar-sig"></div>
-    <button id="btn-menu-game">☰</button>
+    <button id="btn-menu-game">☰ Menu</button>
   </div>
   <div id="game-area">
     <div id="canvas-wrap">
@@ -276,28 +248,77 @@
       <div class="panel" id="hold-panel"><h3>Guardada</h3><canvas id="hold-canvas" width="70" height="70"></canvas></div>
     </div>
   </div>
-  <!-- Mobile controls only -->
   <div id="controls">
     <div class="ctrl-row">
-      <div class="btn" id="btn-hold">📦</div>
-      <div class="btn" id="btn-rotate">↻</div>
+      <!-- HOLD -->
+      <div class="btn" id="btn-hold">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+          <rect x="3" y="8" width="9" height="9" rx="2" fill="currentColor" opacity="0.5"/>
+          <rect x="3" y="18" width="9" height="7" rx="2" fill="currentColor" opacity="0.3"/>
+          <rect x="16" y="3" width="9" height="9" rx="2" fill="currentColor"/>
+          <rect x="16" y="13" width="9" height="6" rx="2" fill="currentColor" opacity="0.6"/>
+          <path d="M13 11 L15 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M13 14 L15 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <!-- ROTATE -->
+      <div class="btn" id="btn-rotate">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+          <path d="M20 8C17.8 5.8 14.5 4.8 11 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M8 10C6.3 12.2 6 15 7 17.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M10 21C12.5 22.5 15.5 22.5 18 21" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M20.5 14C20.8 16.5 20 19 18.5 21" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+          <polyline points="19,5 20.5,8.5 17,9" fill="currentColor" stroke="currentColor" stroke-width="1" stroke-linejoin="round"/>
+        </svg>
+      </div>
     </div>
     <div class="ctrl-row">
-      <div class="btn" id="btn-left">◀</div>
-      <div class="btn" id="btn-down">▼</div>
-      <div class="btn" id="btn-right">▶</div>
+      <!-- LEFT -->
+      <div class="btn" id="btn-left">
+        <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+          <path d="M16 4L6 13L16 22" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M21 4L11 13L21 22" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.4"/>
+        </svg>
+      </div>
+      <!-- DOWN -->
+      <div class="btn" id="btn-down">
+        <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+          <path d="M4 10L13 20L22 10" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M4 5L13 15L22 5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.4"/>
+        </svg>
+      </div>
+      <!-- RIGHT -->
+      <div class="btn" id="btn-right">
+        <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+          <path d="M10 4L20 13L10 22" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M5 4L15 13L5 22" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.4"/>
+        </svg>
+      </div>
     </div>
     <div class="ctrl-row">
-      <div class="btn wide" id="btn-drop">⬇ DROP INSTANTÂNEO</div>
-      <div class="btn sm" id="btn-pause">⏸</div>
+      <!-- DROP -->
+      <div class="btn wide" id="btn-drop">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M10 2V14" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M5 9L10 15L15 9" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="3" y="16" width="14" height="2.5" rx="1.2" fill="white" opacity="0.7"/>
+        </svg>
+        DROP
+      </div>
+      <!-- PAUSE -->
+      <div class="btn sm" id="btn-pause">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <rect x="4" y="3" width="5" height="16" rx="2" fill="currentColor"/>
+          <rect x="13" y="3" width="5" height="16" rx="2" fill="currentColor"/>
+        </svg>
+      </div>
     </div>
   </div>
   <div id="desktop-hint">⬅➡ mover &nbsp;·&nbsp; ↑ girar &nbsp;·&nbsp; ↓ descer &nbsp;·&nbsp; <strong>Espaço</strong> drop &nbsp;·&nbsp; <strong>C</strong> guardar &nbsp;·&nbsp; <strong>P</strong> pausar</div>
 </div>
 
 <script>
-// ── DEVICE DETECTION ──────────────────────────
-const isMobile = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+const isMobile=('ontouchstart' in window)||(navigator.maxTouchPoints>0);
 
 // ── AUDIO ──────────────────────────────────────
 let audioCtx=null;
@@ -318,202 +339,38 @@ const SFX={
 };
 function vib(p){if(cfg.vib&&navigator.vibrate)navigator.vibrate(p);}
 
-// ── STORAGE ────────────────────────────────────
-let playerSlots=null;
-let ranking=[];
-
-async function loadStorage(){
-  // Personal signature
-  try{const r=await window.storage.get('tetris-player-sig');playerSlots=r?JSON.parse(r.value):null;}
-  catch(e){playerSlots=null;}
-
-  // Online shared ranking
-  await loadRanking();
-
-  if(!playerSlots){
-    setupEditSlots=defaultSlots();
-    buildGenericSigEditor(setupEditSlots,'setup-sig-builder','setup-sig-preview');
-    document.getElementById('name-setup-modal').classList.add('show');
-  } else {
-    renderPlayerBadge();
-    renderTopbarSig();
-    showScreen('screen-menu');
-  }
-  initPWA();
-  applyDeviceLayout();
-}
-
-async function savePlayerSlots(){
-  try{await window.storage.set('tetris-player-sig',JSON.stringify(playerSlots));}catch(e){}
-}
-
-async function loadRanking(){
-  try{
-    const r=await window.storage.get('tetris-ranking-v2',true);
-    ranking=r?JSON.parse(r.value):[];
-  }catch(e){ranking=[];}
-  renderRanking();
-}
-
-async function saveRanking(){
-  try{await window.storage.set('tetris-ranking-v2',JSON.stringify(ranking),true);}catch(e){}
-}
-
-function defaultSlots(){return Array.from({length:5},()=>({pieceId:0,rotation:0}));}
-
-// ── DEVICE LAYOUT ──────────────────────────────
-function applyDeviceLayout(){
-  const ctrl=document.getElementById('controls');
-  const hint=document.getElementById('desktop-hint');
-  if(isMobile){
-    ctrl.style.display='flex';
-    hint.style.display='none';
-  } else {
-    ctrl.style.display='none';
-    hint.style.display='block';
-  }
-}
-
-// ── PIECES ─────────────────────────────────────
-const COLORS=['','#ff4422','#00ccff','#ffaa00','#00ff88','#aa00ff','#ffee00','#ff8800'];
-const PIECE_NAMES=['','I','O','T','S','Z','J','L'];
-const SHAPES_BASE=[
-  [],[[1,1,1,1]],[[2,2],[2,2]],[[0,3,0],[3,3,3]],
-  [[0,4,4],[4,4,0]],[[5,5,0],[0,5,5]],[[6,0,0],[6,6,6]],[[0,0,7],[7,7,7]],
-];
-const rotShape=s=>s[0].map((_,i)=>s.map(r=>r[i]).reverse());
-function getRotatedShape(id,rot){if(!id)return null;let s=SHAPES_BASE[id].map(r=>[...r]);for(let i=0;i<rot;i++)s=rotShape(s);return s;}
-
-const SW=44,SH=44;
-function drawSlotCanvas(canvas,id,rot){
-  const c=canvas.getContext('2d');c.clearRect(0,0,SW,SH);
-  if(!id){c.strokeStyle='#3a2200';c.setLineDash([3,3]);c.strokeRect(4,4,SW-8,SH-8);c.setLineDash([]);c.fillStyle='#3a2200';c.font='18px sans-serif';c.textAlign='center';c.textBaseline='middle';c.fillText('+',SW/2,SH/2);return;}
-  const shape=getRotatedShape(id,rot),rows=shape.length,cols=shape[0].length;
-  const sz=Math.min(Math.floor((SW-4)/cols),Math.floor((SH-4)/rows));
-  const ox=Math.floor((SW-cols*sz)/2),oy=Math.floor((SH-rows*sz)/2);
-  shape.forEach((row,r)=>row.forEach((v,col)=>{if(!v)return;const c2=canvas.getContext('2d');c2.fillStyle=COLORS[id];c2.fillRect(ox+col*sz+1,oy+r*sz+1,sz-2,sz-2);c2.fillStyle='rgba(255,255,255,0.25)';c2.fillRect(ox+col*sz+2,oy+r*sz+2,sz-3,Math.max(2,sz*0.22));}));
-}
-function renderSigCanvases(slots,container,size){
-  container.innerHTML='';
-  slots.forEach(slot=>{
-    if(!slot.pieceId)return;
-    const cv=document.createElement('canvas');cv.width=size;cv.height=size;
-    const c=cv.getContext('2d'),shape=getRotatedShape(slot.pieceId,slot.rotation),rows=shape.length,cols=shape[0].length;
-    const sz=Math.min(Math.floor((size-2)/cols),Math.floor((size-2)/rows));
-    const ox=Math.floor((size-cols*sz)/2),oy=Math.floor((size-rows*sz)/2);
-    shape.forEach((row,r)=>row.forEach((v,col)=>{if(!v)return;c.fillStyle=COLORS[slot.pieceId];c.fillRect(ox+col*sz+1,oy+r*sz+1,sz-2,sz-2);c.fillStyle='rgba(255,255,255,0.28)';c.fillRect(ox+col*sz+2,oy+r*sz+2,sz-3,Math.max(1,sz*0.25));}));
-    container.appendChild(cv);
-  });
-  if(!slots.some(s=>s.pieceId)){const sp=document.createElement('span');sp.style.cssText='color:#443322;font-size:11px';sp.textContent='—';container.appendChild(sp);}
-}
-function renderPlayerBadge(){if(playerSlots)renderSigCanvases(playerSlots,document.getElementById('pb-sig-display'),22);}
-function renderTopbarSig(){if(playerSlots)renderSigCanvases(playerSlots,document.getElementById('topbar-sig'),18);}
-
-// ── SIG EDITOR ─────────────────────────────────
-let setupEditSlots=[];
-function buildGenericSigEditor(slotArr,builderId,previewId){
-  const wrap=document.getElementById(builderId);wrap.innerHTML='';
-  slotArr.forEach((slot,i)=>{
-    const div=document.createElement('div');div.className='sig-slot';
-    const cv=document.createElement('canvas');cv.width=SW;cv.height=SH;drawSlotCanvas(cv,slot.pieceId,slot.rotation);
-    const nav=document.createElement('div');nav.className='slot-piece-nav';
-    const bP=document.createElement('button');bP.className='slot-btn';bP.textContent='◀';
-    const lbl=document.createElement('span');lbl.textContent=slot.pieceId?PIECE_NAMES[slot.pieceId]:'–';
-    const bN=document.createElement('button');bN.className='slot-btn';bN.textContent='▶';
-    nav.append(bP,lbl,bN);
-    const ctrl=document.createElement('div');ctrl.className='slot-controls';
-    const bR=document.createElement('button');bR.className='slot-btn';bR.textContent='↻';
-    ctrl.append(bR);div.append(cv,nav,ctrl);wrap.appendChild(div);
-    const refresh=()=>{drawSlotCanvas(cv,slotArr[i].pieceId,slotArr[i].rotation);lbl.textContent=slotArr[i].pieceId?PIECE_NAMES[slotArr[i].pieceId]:'–';renderSigCanvases(slotArr,document.getElementById(previewId),22);};
-    const prev=()=>{slotArr[i].pieceId=(slotArr[i].pieceId-1+8)%8;slotArr[i].rotation=0;refresh();};
-    const nxt=()=>{slotArr[i].pieceId=(slotArr[i].pieceId+1)%8;slotArr[i].rotation=0;refresh();};
-    const rot=()=>{if(!slotArr[i].pieceId)return;slotArr[i].rotation=(slotArr[i].rotation+1)%4;refresh();};
-    bP.addEventListener('click',prev);bN.addEventListener('click',nxt);bR.addEventListener('click',rot);
-    bP.addEventListener('touchstart',e=>{e.preventDefault();prev();},{passive:false});
-    bN.addEventListener('touchstart',e=>{e.preventDefault();nxt();},{passive:false});
-    bR.addEventListener('touchstart',e=>{e.preventDefault();rot();},{passive:false});
-  });
-  renderSigCanvases(slotArr,document.getElementById(previewId),22);
-}
-
-// First-time setup save
-document.getElementById('btn-setup-save').addEventListener('click',()=>{
-  if(!setupEditSlots.some(s=>s.pieceId)){
-    const p=document.querySelector('#name-setup-modal p');
-    p.style.color='#ff4422';p.textContent='Escolha pelo menos uma peça!';
-    setTimeout(()=>{p.style.color='';p.textContent='Monte sua assinatura com peças do Tetris. Ela vai te identificar no ranking!';},1800);
-    return;
-  }
-  playerSlots=setupEditSlots.map(s=>({...s}));
-  savePlayerSlots();
-  document.getElementById('name-setup-modal').classList.remove('show');
-  renderPlayerBadge();renderTopbarSig();
-  showScreen('screen-menu');
-});
-
-// Edit signature modal
-let editSlots=[];
-function openSigModal(){
-  editSlots=playerSlots.map(s=>({...s}));
-  buildGenericSigEditor(editSlots,'sig-builder','sig-preview');
-  document.getElementById('sig-modal').classList.add('show');
-}
-document.getElementById('btn-sig-save').addEventListener('click',()=>{
-  playerSlots=editSlots.map(s=>({...s}));
-  savePlayerSlots();renderPlayerBadge();renderTopbarSig();
-  document.getElementById('sig-modal').classList.remove('show');
-});
-document.getElementById('btn-sig-skip').addEventListener('click',()=>{
-  document.getElementById('sig-modal').classList.remove('show');
-});
-document.getElementById('player-badge').addEventListener('click',openSigModal);
-
-// ── RANKING ────────────────────────────────────
-const MODE_LABEL={classic:'Clássico',sprint:'Sprint',survival:'Survival'};
-const MEDALS=['🥇','🥈','🥉'];
-
-async function addToRanking(slots,sc,mode){
-  await loadRanking(); // refresh first
-  ranking.push({slots:JSON.parse(JSON.stringify(slots)),score:sc,mode,ts:Date.now()});
-  ranking.sort((a,b)=>b.score-a.score);
-  if(ranking.length>20)ranking=ranking.slice(0,20);
-  await saveRanking();
-  renderRanking();
-}
-
-function renderRanking(){
-  const tbody=document.getElementById('rank-body');
-  if(!ranking||!ranking.length){tbody.innerHTML=`<tr><td colspan="4" class="rank-empty">Nenhuma partida ainda! 🎮</td></tr>`;return;}
-  tbody.innerHTML='';
-  ranking.forEach((r,i)=>{
-    const tr=document.createElement('tr');if(i===0)tr.style.cssText='color:#ffd700';
-    const tdM=document.createElement('td');tdM.innerHTML=MEDALS[i]||`<span style="color:#443322">${i+1}</span>`;
-    const tdS=document.createElement('td');const sw=document.createElement('div');sw.className='rank-sig';renderSigCanvases(r.slots,sw,18);tdS.appendChild(sw);
-    const tdMo=document.createElement('td');tdMo.innerHTML=`<span class="rank-mode-tag">${MODE_LABEL[r.mode]||r.mode}</span>`;
-    const tdPt=document.createElement('td');tdPt.textContent=r.score.toLocaleString();
-    tr.append(tdM,tdS,tdMo,tdPt);tbody.appendChild(tr);
-  });
-}
-
 // ── CONFIG ─────────────────────────────────────
-let cfg={mode:'classic',hold:true,ghost:true,bag:true,sound:true,vib:true,retro:false};
-document.querySelectorAll('.opt').forEach(el=>{
-  el.addEventListener('click',()=>{document.querySelectorAll('.opt').forEach(o=>o.classList.remove('selected'));el.classList.add('selected');cfg.mode=el.dataset.mode;});
-});
-document.querySelectorAll('.switch').forEach(sw=>{
-  sw.addEventListener('click',()=>{
-    sw.classList.toggle('on');const k=sw.id.replace('tog-','');
-    if(k==='hold')cfg.hold=sw.classList.contains('on');
-    if(k==='ghost')cfg.ghost=sw.classList.contains('on');
-    if(k==='bag')cfg.bag=sw.classList.contains('on');
-    if(k==='sound')cfg.sound=sw.classList.contains('on');
-    if(k==='vib')cfg.vib=sw.classList.contains('on');
-    if(k==='retro'){cfg.retro=sw.classList.contains('on');applyRetroTheme(cfg.retro);if(board)draw();}
+let cfg={mode:'classic',hold:true,ghost:true,bag:true,retro:false,sound:true,vib:true};
+
+// Mode selector
+document.querySelectorAll('.mode-opt').forEach(el=>{
+  el.addEventListener('click',()=>{
+    document.querySelectorAll('.mode-opt').forEach(o=>o.classList.remove('selected'));
+    el.classList.add('selected');cfg.mode=el.dataset.mode;
   });
+});
+
+// Mechanics toggles
+document.querySelectorAll('.mech-opt').forEach(el=>{
+  el.addEventListener('click',()=>{
+    el.classList.toggle('selected');
+    const k=el.dataset.mech;
+    const on=el.classList.contains('selected');
+    if(k==='hold')cfg.hold=on;
+    if(k==='ghost')cfg.ghost=on;
+    if(k==='bag')cfg.bag=on;
+    if(k==='retro'){cfg.retro=on;applyRetroTheme(on);}
+  });
+});
+
+// Sound toggle
+document.getElementById('btn-open-sound').addEventListener('click',()=>{
+  cfg.sound=!cfg.sound;
+  document.getElementById('btn-open-sound').textContent=`🔊 Som: ${cfg.sound?'ON':'OFF'}`;
 });
 
 // ── RETRO ──────────────────────────────────────
-const GB={lighter:'#9bbc0f',light:'#8bac0f',dark:'#0f380f',mid:'#306230'};
+const GB={lighter:'#9bbc0f',light:'#8bac0f',dark:'#0f380f'};
 const GB_PIECES=[null,
   {fill:'#0f380f',shade:'#306230',pattern:'lines-h'},
   {fill:'#306230',shade:'#0f380f',pattern:'solid'},
@@ -523,7 +380,7 @@ const GB_PIECES=[null,
   {fill:'#306230',shade:'#8bac0f',pattern:'dots'},
   {fill:'#0f380f',shade:'#306230',pattern:'lines-h'},
 ];
-function drawBlockRetro(id,x,y,sz,tc=ctx,alpha=1){
+function drawBlockRetro(id,x,y,sz,tc,alpha=1){
   if(!id)return;const p=GB_PIECES[id];tc.globalAlpha=alpha;
   tc.fillStyle=p.fill;tc.fillRect(x*sz,y*sz,sz,sz);
   tc.fillStyle=p.shade;const step=Math.max(3,Math.floor(sz/4));
@@ -542,47 +399,40 @@ function applyRetroTheme(on){
 }
 
 // ── NAVIGATION ─────────────────────────────────
-function showScreen(id){
-  document.querySelectorAll('.screen').forEach(s=>s.classList.add('hidden'));
-  document.getElementById(id).classList.remove('hidden');
-}
+function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.add('hidden'));document.getElementById(id).classList.remove('hidden');}
+
 document.getElementById('btn-play').addEventListener('click',()=>{
   document.getElementById('screen-menu').classList.add('hidden');
   document.getElementById('game').style.display='flex';
   document.getElementById('hold-panel').style.display=cfg.hold?'':'none';
-  document.getElementById('btn-hold').style.display=cfg.hold?'':'none';
+  document.getElementById('btn-hold').style.display=cfg.hold?'flex':'none';
   if(cfg.mode==='sprint'){document.getElementById('stat-timer').style.display='';document.getElementById('stat-lines').style.display='none';}
   else{document.getElementById('stat-timer').style.display='none';document.getElementById('stat-lines').style.display='';}
-  renderTopbarSig();resize();startGame();
+  if(isMobile){document.getElementById('controls').style.display='flex';document.getElementById('desktop-hint').style.display='none';}
+  else{document.getElementById('controls').style.display='none';document.getElementById('desktop-hint').style.display='block';}
+  resize();startGame();
 });
-document.getElementById('btn-open-settings').addEventListener('click',()=>showScreen('screen-settings'));
-document.getElementById('btn-back-settings').addEventListener('click',()=>showScreen('screen-menu'));
-document.getElementById('btn-save-settings').addEventListener('click',()=>showScreen('screen-menu'));
+
 document.getElementById('btn-open-info').addEventListener('click',()=>document.getElementById('info-modal').classList.add('show'));
 document.getElementById('btn-info-close').addEventListener('click',()=>document.getElementById('info-modal').classList.remove('show'));
 document.getElementById('btn-menu-game').addEventListener('click',()=>{
   if(raf)cancelAnimationFrame(raf);raf=null;
   if(timerRaf)cancelAnimationFrame(timerRaf);
   document.getElementById('game').style.display='none';
-  showScreen('screen-menu');loadRanking();
+  showScreen('screen-menu');
 });
 
 // ── PWA ────────────────────────────────────────
 let pwaPrompt=null;
-function initPWA(){
-  window.addEventListener('beforeinstallprompt',e=>{
-    e.preventDefault();pwaPrompt=e;
-    document.getElementById('pwa-banner').style.display='flex';
-  });
-  document.getElementById('pwa-install').addEventListener('click',async()=>{
-    if(!pwaPrompt)return;pwaPrompt.prompt();
-    await pwaPrompt.userChoice;
-    document.getElementById('pwa-banner').style.display='none';pwaPrompt=null;
-  });
-  document.getElementById('pwa-close').addEventListener('click',()=>{
-    document.getElementById('pwa-banner').style.display='none';
-  });
-}
+window.addEventListener('beforeinstallprompt',e=>{
+  e.preventDefault();pwaPrompt=e;
+  document.getElementById('pwa-banner').style.display='flex';
+});
+document.getElementById('pwa-install').addEventListener('click',async()=>{
+  if(!pwaPrompt)return;pwaPrompt.prompt();await pwaPrompt.userChoice;
+  document.getElementById('pwa-banner').style.display='none';pwaPrompt=null;
+});
+document.getElementById('pwa-close').addEventListener('click',()=>document.getElementById('pwa-banner').style.display='none');
 
 // ── PARTICLES ──────────────────────────────────
 let particles=[];
@@ -598,6 +448,7 @@ function updateParticles(){
 
 // ── ENGINE ─────────────────────────────────────
 const COLS=10,ROWS=20;let SZ=24;
+const COLORS=['','#ff4422','#00ccff','#ffaa00','#00ff88','#aa00ff','#ffee00','#ff8800'];
 const boardCanvas=document.getElementById('board');
 const ctx=boardCanvas.getContext('2d');
 const nctx=document.getElementById('next-canvas').getContext('2d');
@@ -608,9 +459,7 @@ let hiScore=0;
 
 function resize(){
   const topH=document.getElementById('topbar').offsetHeight;
-  const ctrlEl=document.getElementById('controls');
-  const hintEl=document.getElementById('desktop-hint');
-  const ctrlH=isMobile?ctrlEl.offsetHeight:hintEl.offsetHeight;
+  const ctrlH=isMobile?document.getElementById('controls').offsetHeight:document.getElementById('desktop-hint').offsetHeight;
   const availH=window.innerHeight-topH-ctrlH-10;
   const availW=window.innerWidth-76-7-10;
   SZ=Math.floor(Math.min(availH/ROWS,availW/COLS));
@@ -620,7 +469,7 @@ function resize(){
   if(board)draw();
 }
 
-const GAME_SHAPES=[
+const SHAPES=[
   [],[[1,1,1,1]],[[2,2],[2,2]],[[0,3,0],[3,3,3]],
   [[0,4,4],[4,4,0]],[[5,5,0],[0,5,5]],[[6,0,0],[6,6,6]],[[0,0,7],[7,7,7]],
 ];
@@ -628,7 +477,7 @@ let bag=[];
 function nextBag(){if(!bag.length)bag=[1,2,3,4,5,6,7].sort(()=>Math.random()-0.5);return bag.shift();}
 function randId(){return cfg.bag?nextBag():Math.floor(Math.random()*7)+1;}
 const rotG=s=>s[0].map((_,i)=>s.map(r=>r[i]).reverse());
-function makePiece(id){return{id,shape:GAME_SHAPES[id].map(r=>[...r]),x:Math.floor((COLS-GAME_SHAPES[id][0].length)/2),y:0};}
+function makePiece(id){return{id,shape:SHAPES[id].map(r=>[...r]),x:Math.floor((COLS-SHAPES[id][0].length)/2),y:0};}
 function randPiece(){return makePiece(randId());}
 
 let board,piece,next,held,canHold,score,lines,level,gameOver,paused,raf,lastTime,dropInterval,sprintStart,timerRaf;
@@ -722,35 +571,29 @@ function startGame(){
 
 function endGame(win=false){
   gameOver=true;
-  if(timerRaf)cancelAnimationFrame(timerRaf);
-  if(raf)cancelAnimationFrame(raf);raf=null;
+  if(timerRaf)cancelAnimationFrame(timerRaf);if(raf)cancelAnimationFrame(raf);raf=null;
   SFX.gameover();vib([200,100,200,100,400]);
+  if(score>hiScore)hiScore=score;
   const el=(Date.now()-(sprintStart||Date.now()))/1000;
-  const finalScore=win?Math.round((1/(el||1))*100000):score;
   overlay.innerHTML=win
-    ?`🏁 SPRINT!<br><small>${Math.floor(el/60)}:${String(Math.floor(el%60)).padStart(2,'0')}</small>`
-    :`GAME OVER<br><small>Pontos: ${score.toLocaleString()}</small>`;
+    ?`🏁 SPRINT!<br><small>${Math.floor(el/60)}:${String(Math.floor(el%60)).padStart(2,'0')}</small><br><small style="color:var(--accent)">Toque para jogar de novo</small>`
+    :`GAME OVER<br><small>Pontos: ${score.toLocaleString()}</small><br><small style="color:var(--accent)">Toque para jogar de novo</small>`;
   overlay.style.display='flex';
-  // Auto-save to ranking after 1.5s, then go to menu
-  setTimeout(async()=>{
-    await addToRanking(playerSlots, finalScore, cfg.mode);
-    document.getElementById('game').style.display='none';
-    showScreen('screen-menu');
-  }, 1500);
+  overlay.style.pointerEvents='auto';
+  overlay.onclick=()=>{overlay.style.pointerEvents='none';startGame();};
 }
 
 function togglePause(){
   if(gameOver)return;paused=!paused;
   document.getElementById('btn-pause').textContent=paused?'▶':'⏸';
-  if(paused){if(timerRaf)cancelAnimationFrame(timerRaf);overlay.innerHTML='⏸ PAUSADO';overlay.style.display='flex';draw();}
-  else{overlay.style.display='none';lastTime=performance.now();if(cfg.mode==='sprint')timerRaf=requestAnimationFrame(sprintTimer);raf=requestAnimationFrame(loop);}
+  if(paused){if(timerRaf)cancelAnimationFrame(timerRaf);overlay.innerHTML='⏸ PAUSADO<br><small>Toque para continuar</small>';overlay.style.display='flex';overlay.style.pointerEvents='auto';overlay.onclick=togglePause;}
+  else{overlay.style.pointerEvents='none';overlay.style.display='none';lastTime=performance.now();if(cfg.mode==='sprint')timerRaf=requestAnimationFrame(sprintTimer);raf=requestAnimationFrame(loop);}
 }
 
-// ── BUTTONS ────────────────────────────────────
 function tapBtn(id,fn){
   const el=document.getElementById(id);
-  const press=e=>{e.preventDefault();el.classList.add('pressed');fn();setTimeout(()=>el.classList.remove('pressed'),150);};
-  el.addEventListener('touchstart',press,{passive:false});el.addEventListener('mousedown',press);
+  const p=e=>{e.preventDefault();el.classList.add('pressed');fn();setTimeout(()=>el.classList.remove('pressed'),150);};
+  el.addEventListener('touchstart',p,{passive:false});el.addEventListener('mousedown',p);
 }
 function holdBtn(id,fn,d=75){
   const el=document.getElementById(id);let iv;
@@ -781,7 +624,7 @@ document.addEventListener('keydown',e=>{
 });
 
 window.addEventListener('resize',resize);
-loadStorage();
+showScreen('screen-menu');
 </script>
 </body>
 </html>
