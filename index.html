@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <meta name="theme-color" content="#0f0800">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Tetris">
-<title>Tetris — Pedro & Claude</title>
+<meta name="apple-mobile-web-app-title" content="Bloqüito">
+<title>Bloqüito — Pedro & Claude</title>
 <style>
   :root { --bg:#0f0800; --panel:#1a1000; --border:#3a2200; --accent:#ff8c00; --accent2:#ffb347; --glow:#ff8c0055; }
   * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
@@ -19,8 +19,9 @@
   .logo-wrap { display:flex; flex-direction:column; align-items:center; gap:2px; margin-top:4px; }
   .logo-blocks { display:flex; gap:3px; }
   .lb { width:14px; height:14px; border-radius:3px; }
-  .logo-wrap h1 { font-size:40px; font-weight:900; letter-spacing:6px; background:linear-gradient(135deg,var(--accent),var(--accent2),#fff6); -webkit-background-clip:text; -webkit-text-fill-color:transparent; filter:drop-shadow(0 0 18px var(--accent)); }
-  .logo-wrap .subtitle { font-size:9px; color:#553300; letter-spacing:3px; text-transform:uppercase; margin-top:-8px; }
+  .logo-wrap h1 { font-size:40px; font-weight:900; letter-spacing:6px; background:linear-gradient(135deg,var(--accent),var(--accent2),#fff6); -webkit-background-clip:text; -webkit-text-fill-color:transparent; filter:drop-shadow(0 0 18px var(--accent)); margin:0; }
+  .hi-menu { font-size:12px; background:var(--panel); border-radius:20px; padding:4px 12px; margin-top:4px; border:1px solid var(--border); color:var(--accent2); }
+  .hi-menu span { font-size:10px; color:#886644; }
 
   /* SECTION LABEL */
   .section-label { width:100%; max-width:340px; font-size:9px; text-transform:uppercase; letter-spacing:2px; color:#664400; padding-left:2px; }
@@ -40,20 +41,13 @@
   .mech-opt .msvg { flex-shrink:0; }
   .mech-opt .mlabel { font-size:11px; font-weight:bold; color:#ccc; line-height:1.3; }
   .mech-opt .mdesc { font-size:9px; color:#554433; }
-  .mech-check { margin-left:auto; width:18px; height:18px; border-radius:50%; border:2px solid var(--border); flex-shrink:0; transition:background .2s,border-color .2s; }
-  .mech-opt.selected .mech-check { background:var(--accent); border-color:var(--accent); }
+  .mech-check { display:none; }
 
   /* BUTTONS */
   .menu-btn { width:100%; max-width:340px; padding:14px; background:linear-gradient(135deg,var(--accent),#b85c00); border:none; border-radius:14px; color:#fff; font-size:16px; font-weight:900; cursor:pointer; box-shadow:0 4px 20px var(--glow); letter-spacing:2px; text-transform:uppercase; }
   .menu-btn.secondary { background:linear-gradient(135deg,#2a1500,#1a0d00); border:2px solid var(--border); color:var(--accent2); box-shadow:none; font-size:12px; letter-spacing:1px; padding:11px; }
   .menu-row { display:flex; gap:8px; width:100%; max-width:340px; }
   .menu-row .menu-btn { flex:1; }
-
-  /* CREDIT */
-  .credit { display:flex; align-items:center; gap:8px; font-size:10px; color:#443322; margin-top:4px; }
-  .claude-logo { width:20px; height:20px; border-radius:50%; background:linear-gradient(135deg,#cc785c,#d4956a); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-  .claude-logo svg { width:12px; height:12px; }
-  .credit strong { color:#997755; }
 
   /* INFO MODAL */
   .modal { position:fixed; inset:0; z-index:200; background:rgba(5,2,0,0.96); display:none; flex-direction:column; align-items:center; justify-content:flex-start; gap:12px; padding:16px; overflow-y:auto; }
@@ -135,8 +129,8 @@
   <div class="logo-wrap">
     <div class="logo-blocks"><div class="lb" style="background:#ff8c00"></div><div class="lb" style="background:#ffb347"></div><div class="lb" style="background:#ff6600"></div><div class="lb" style="background:#ffd700"></div></div>
     <div class="logo-blocks" style="margin-left:17px"><div class="lb" style="background:#ff8c00"></div><div class="lb" style="background:#ff6600"></div><div class="lb" style="background:#ffb347"></div></div>
-    <h1>TETRIS</h1>
-    <div class="subtitle">edição especial</div>
+    <h1>BLOQÜITO</h1>
+    <div class="hi-menu">🏆 <span>RECORDE</span> <strong id="hi-menu-val">0</strong></div>
   </div>
 
   <!-- MODE -->
@@ -153,16 +147,11 @@
     <!-- HOLD -->
     <div class="mech-opt selected" data-mech="hold">
       <svg class="msvg" width="28" height="28" viewBox="0 0 28 28" fill="none">
-        <!-- Alças -->
         <path d="M10 8 Q10 3 14 3 Q18 3 18 8" stroke="#ffb347" stroke-width="2.2" stroke-linecap="round" fill="none"/>
-        <!-- Corpo da mochila -->
         <rect x="5" y="8" width="18" height="17" rx="4" fill="#ffb347"/>
-        <!-- Bolso frontal -->
         <rect x="8" y="16" width="12" height="7" rx="2.5" fill="#cc7700" opacity="0.7"/>
-        <!-- Zíper bolso -->
         <path d="M10 19.5 H18" stroke="#ffb347" stroke-width="1.3" stroke-linecap="round"/>
         <circle cx="18" cy="19.5" r="1.2" fill="#ffb347"/>
-        <!-- Zíper principal -->
         <path d="M7 13 H21" stroke="#cc7700" stroke-width="1.3" stroke-linecap="round" opacity="0.8"/>
       </svg>
       <div><div class="mlabel">Guardar</div><div class="mdesc">Segurar peça</div></div>
@@ -218,11 +207,6 @@
     <button class="menu-btn secondary" id="btn-open-info">ℹ️ Como Jogar</button>
     <button class="menu-btn secondary" id="btn-open-sound">🔊 Som: ON</button>
   </div>
-
-  <div class="credit">
-    <div class="claude-logo"><svg viewBox="0 0 24 24" fill="none"><path d="M13.827 3.52l5.897 14.56h-3.238l-1.18-3.065H9.78l-1.165 3.064H5.376L11.273 3.52h2.554zm-1.267 4.02l-1.832 4.83h3.664l-1.832-4.83z" fill="white"/></svg></div>
-    <span>Feito com 🧡 por <strong>Pedro</strong> &amp; <strong>Claude</strong></span>
-  </div>
 </div>
 
 <!-- GAME -->
@@ -250,15 +234,15 @@
   </div>
   <div id="controls">
     <div class="ctrl-row">
-      <!-- HOLD -->
+      <!-- HOLD com ícone de mochila -->
       <div class="btn" id="btn-hold">
         <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-          <rect x="3" y="8" width="9" height="9" rx="2" fill="currentColor" opacity="0.5"/>
-          <rect x="3" y="18" width="9" height="7" rx="2" fill="currentColor" opacity="0.3"/>
-          <rect x="16" y="3" width="9" height="9" rx="2" fill="currentColor"/>
-          <rect x="16" y="13" width="9" height="6" rx="2" fill="currentColor" opacity="0.6"/>
-          <path d="M13 11 L15 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          <path d="M13 14 L15 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M10 8 Q10 3 14 3 Q18 3 18 8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+          <rect x="5" y="8" width="18" height="17" rx="4" fill="currentColor"/>
+          <rect x="8" y="16" width="12" height="7" rx="2.5" fill="currentColor" opacity="0.7"/>
+          <path d="M10 19.5 H18" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+          <circle cx="18" cy="19.5" r="1.2" fill="currentColor"/>
+          <path d="M7 13 H21" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" opacity="0.8"/>
         </svg>
       </div>
       <!-- ROTATE -->
@@ -339,8 +323,115 @@ const SFX={
 };
 function vib(p){if(cfg.vib&&navigator.vibrate)navigator.vibrate(p);}
 
+// ── MÚSICA DE FUNDO (melodia mais longa e menos repetitiva) ─────
+let musicInterval = null;
+let musicActive = false;
+
+// Melodia principal com 16 compassos (notas e pausas)
+// Cada elemento: { freq, dur, type, vol }
+const bgMelody = [
+  // Intro
+  { freq: 262, dur: 0.3, type: 'square', vol: 0.08 }, // C4
+  { freq: 294, dur: 0.3, type: 'square', vol: 0.08 }, // D4
+  { freq: 330, dur: 0.3, type: 'square', vol: 0.08 }, // E4
+  { freq: 349, dur: 0.3, type: 'square', vol: 0.08 }, // F4
+  { freq: 330, dur: 0.3, type: 'square', vol: 0.08 },
+  { freq: 294, dur: 0.3, type: 'square', vol: 0.08 },
+  { freq: 262, dur: 0.6, type: 'square', vol: 0.1 }, // pausa implícita
+
+  // Parte A
+  { freq: 330, dur: 0.25, type: 'square', vol: 0.08 },
+  { freq: 349, dur: 0.25, type: 'square', vol: 0.08 },
+  { freq: 392, dur: 0.5, type: 'square', vol: 0.1 }, // G4
+  { freq: 349, dur: 0.25, type: 'square', vol: 0.08 },
+  { freq: 330, dur: 0.25, type: 'square', vol: 0.08 },
+  { freq: 294, dur: 0.5, type: 'square', vol: 0.1 },
+  { freq: 262, dur: 0.5, type: 'square', vol: 0.1 },
+  { freq: 294, dur: 0.5, type: 'square', vol: 0.1 },
+  { freq: 330, dur: 0.5, type: 'square', vol: 0.1 },
+
+  // Parte B (variação)
+  { freq: 349, dur: 0.25, type: 'square', vol: 0.08 },
+  { freq: 392, dur: 0.25, type: 'square', vol: 0.08 },
+  { freq: 440, dur: 0.5, type: 'square', vol: 0.1 }, // A4
+  { freq: 392, dur: 0.25, type: 'square', vol: 0.08 },
+  { freq: 349, dur: 0.25, type: 'square', vol: 0.08 },
+  { freq: 330, dur: 0.5, type: 'square', vol: 0.1 },
+  { freq: 294, dur: 0.5, type: 'square', vol: 0.1 },
+  { freq: 330, dur: 0.5, type: 'square', vol: 0.1 },
+  { freq: 349, dur: 0.5, type: 'square', vol: 0.1 },
+
+  // Ponte (mais grave)
+  { freq: 196, dur: 0.5, type: 'sawtooth', vol: 0.07 }, // G3
+  { freq: 220, dur: 0.5, type: 'sawtooth', vol: 0.07 }, // A3
+  { freq: 262, dur: 0.5, type: 'sawtooth', vol: 0.07 }, // C4
+  { freq: 294, dur: 0.5, type: 'sawtooth', vol: 0.07 }, // D4
+  { freq: 330, dur: 0.5, type: 'sawtooth', vol: 0.07 }, // E4
+  { freq: 349, dur: 1.0, type: 'sawtooth', vol: 0.1 }, // F4
+
+  // Repetição da parte A com baixo sutil
+  { freq: 330, dur: 0.25, type: 'square', vol: 0.08 },
+  { freq: 349, dur: 0.25, type: 'square', vol: 0.08 },
+  { freq: 392, dur: 0.5, type: 'square', vol: 0.1 },
+  { freq: 349, dur: 0.25, type: 'square', vol: 0.08 },
+  { freq: 330, dur: 0.25, type: 'square', vol: 0.08 },
+  { freq: 294, dur: 0.5, type: 'square', vol: 0.1 },
+  { freq: 262, dur: 0.5, type: 'square', vol: 0.1 },
+  { freq: 294, dur: 0.5, type: 'square', vol: 0.1 },
+  { freq: 330, dur: 0.5, type: 'square', vol: 0.1 },
+
+  // Final
+  { freq: 349, dur: 0.4, type: 'square', vol: 0.08 },
+  { freq: 392, dur: 0.4, type: 'square', vol: 0.08 },
+  { freq: 440, dur: 0.8, type: 'square', vol: 0.12 },
+  { freq: 392, dur: 0.4, type: 'square', vol: 0.08 },
+  { freq: 349, dur: 0.4, type: 'square', vol: 0.08 },
+  { freq: 330, dur: 1.2, type: 'square', vol: 0.12 },
+];
+
+let melodyIndex = 0;
+
+function playNextMusicNote() {
+  if (!musicActive || !cfg.sound) return;
+  const note = bgMelody[melodyIndex % bgMelody.length];
+  playTone(note.freq, note.type, note.dur, note.vol || 0.08);
+  melodyIndex++;
+  // agenda próxima nota
+  musicInterval = setTimeout(() => playNextMusicNote(), note.dur * 1000);
+}
+
+function startMusic() {
+  if (musicInterval) {
+    clearTimeout(musicInterval);
+    musicInterval = null;
+  }
+  if (!cfg.sound) return;
+  musicActive = true;
+  melodyIndex = 0;
+  playNextMusicNote();
+}
+
+function stopMusic() {
+  musicActive = false;
+  if (musicInterval) {
+    clearTimeout(musicInterval);
+    musicInterval = null;
+  }
+}
+
 // ── CONFIG ─────────────────────────────────────
 let cfg={mode:'classic',hold:true,ghost:true,bag:true,retro:false,sound:true,vib:true};
+
+// High Score persistente
+let hiScore = localStorage.getItem('bloquitoHiScore') ? parseInt(localStorage.getItem('bloquitoHiScore')) : 0;
+document.getElementById('hi-menu-val').textContent = hiScore;
+document.getElementById('hi').textContent = hiScore;
+
+function updateHiScoreDisplay() {
+  document.getElementById('hi').textContent = hiScore;
+  document.getElementById('hi-menu-val').textContent = hiScore;
+  localStorage.setItem('bloquitoHiScore', hiScore);
+}
 
 // Mode selector
 document.querySelectorAll('.mode-opt').forEach(el=>{
@@ -363,10 +454,12 @@ document.querySelectorAll('.mech-opt').forEach(el=>{
   });
 });
 
-// Sound toggle
+// Sound toggle (afeta música também)
 document.getElementById('btn-open-sound').addEventListener('click',()=>{
   cfg.sound=!cfg.sound;
   document.getElementById('btn-open-sound').textContent=`🔊 Som: ${cfg.sound?'ON':'OFF'}`;
+  if (!cfg.sound) stopMusic();
+  else if (musicActive && !gameOver && !paused && document.getElementById('game').style.display === 'flex') startMusic();
 });
 
 // ── RETRO ──────────────────────────────────────
@@ -411,6 +504,7 @@ document.getElementById('btn-play').addEventListener('click',()=>{
   if(isMobile){document.getElementById('controls').style.display='flex';document.getElementById('desktop-hint').style.display='none';}
   else{document.getElementById('controls').style.display='none';document.getElementById('desktop-hint').style.display='block';}
   resize();startGame();
+  if(cfg.sound && !gameOver && !paused) startMusic();
 });
 
 document.getElementById('btn-open-info').addEventListener('click',()=>document.getElementById('info-modal').classList.add('show'));
@@ -418,8 +512,10 @@ document.getElementById('btn-info-close').addEventListener('click',()=>document.
 document.getElementById('btn-menu-game').addEventListener('click',()=>{
   if(raf)cancelAnimationFrame(raf);raf=null;
   if(timerRaf)cancelAnimationFrame(timerRaf);
+  stopMusic();
   document.getElementById('game').style.display='none';
   showScreen('screen-menu');
+  updateHiScoreDisplay();
 });
 
 // ── PWA ────────────────────────────────────────
@@ -455,7 +551,6 @@ const nctx=document.getElementById('next-canvas').getContext('2d');
 const hctx=document.getElementById('hold-canvas').getContext('2d');
 const overlay=document.getElementById('overlay');
 const flashEl=document.getElementById('flash');
-let hiScore=0;
 
 function resize(){
   const topH=document.getElementById('topbar').offsetHeight;
@@ -508,7 +603,7 @@ function clearLines(){
   document.getElementById('score').textContent=score;
   document.getElementById('lines').textContent=lines;
   document.getElementById('level').textContent=level;
-  if(score>hiScore){hiScore=score;document.getElementById('hi').textContent=hiScore;}
+  if(score>hiScore){hiScore=score;updateHiScoreDisplay();}
   if(cfg.mode==='sprint'&&lines>=40)endGame(true);
 }
 
@@ -574,6 +669,7 @@ function endGame(win=false){
   if(timerRaf)cancelAnimationFrame(timerRaf);if(raf)cancelAnimationFrame(raf);raf=null;
   SFX.gameover();vib([200,100,200,100,400]);
   if(score>hiScore)hiScore=score;
+  updateHiScoreDisplay();
   const el=(Date.now()-(sprintStart||Date.now()))/1000;
   overlay.innerHTML=win
     ?`🏁 SPRINT!<br><small>${Math.floor(el/60)}:${String(Math.floor(el%60)).padStart(2,'0')}</small><br><small style="color:var(--accent)">Toque para jogar de novo</small>`
@@ -581,13 +677,14 @@ function endGame(win=false){
   overlay.style.display='flex';
   overlay.style.pointerEvents='auto';
   overlay.onclick=()=>{overlay.style.pointerEvents='none';startGame();};
+  stopMusic();
 }
 
 function togglePause(){
   if(gameOver)return;paused=!paused;
   document.getElementById('btn-pause').textContent=paused?'▶':'⏸';
-  if(paused){if(timerRaf)cancelAnimationFrame(timerRaf);overlay.innerHTML='⏸ PAUSADO<br><small>Toque para continuar</small>';overlay.style.display='flex';overlay.style.pointerEvents='auto';overlay.onclick=togglePause;}
-  else{overlay.style.pointerEvents='none';overlay.style.display='none';lastTime=performance.now();if(cfg.mode==='sprint')timerRaf=requestAnimationFrame(sprintTimer);raf=requestAnimationFrame(loop);}
+  if(paused){if(timerRaf)cancelAnimationFrame(timerRaf);overlay.innerHTML='⏸ PAUSADO<br><small>Toque para continuar</small>';overlay.style.display='flex';overlay.style.pointerEvents='auto';overlay.onclick=togglePause; stopMusic();}
+  else{overlay.style.pointerEvents='none';overlay.style.display='none';lastTime=performance.now();if(cfg.mode==='sprint')timerRaf=requestAnimationFrame(sprintTimer);raf=requestAnimationFrame(loop); if(cfg.sound && !gameOver) startMusic();}
 }
 
 function tapBtn(id,fn){
