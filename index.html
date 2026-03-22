@@ -49,6 +49,9 @@
   .menu-row { display:flex; gap:8px; width:100%; max-width:340px; }
   .menu-row .menu-btn { flex:1; }
 
+  /* VERSION */
+  .version { font-size:9px; color:#553322; text-align:center; margin-top:8px; letter-spacing:1px; }
+
   /* INFO MODAL */
   .modal { position:fixed; inset:0; z-index:200; background:rgba(5,2,0,0.96); display:none; flex-direction:column; align-items:center; justify-content:flex-start; gap:12px; padding:16px; overflow-y:auto; }
   .modal.show { display:flex; }
@@ -87,6 +90,10 @@
   .panel { background:var(--panel); border:1px solid var(--border); border-radius:10px; padding:7px; transition:box-shadow .2s,border-color .2s; }
   .panel h3 { font-size:8px; text-transform:uppercase; letter-spacing:1px; color:#664400; margin-bottom:4px; }
   .panel.flash-hold { border-color:var(--accent) !important; box-shadow:0 0 14px var(--glow) !important; }
+  /* Imagem decorativa lateral */
+  .side-deco { margin-top:5px; text-align:center; }
+  .side-deco svg { width:32px; height:32px; opacity:0.5; transition:opacity 0.2s; }
+  .side-deco svg:hover { opacity:0.9; }
   #controls { width:100%; display:flex; flex-direction:column; align-items:center; gap:6px; padding:5px 10px 8px; flex-shrink:0; background:#0d0600; border-top:1px solid var(--border); }
   .ctrl-row { display:flex; gap:8px; justify-content:center; }
   .btn { height:52px; min-width:56px; background:linear-gradient(160deg,#2a1500,#1a0d00); border:2px solid #3a2200; border-radius:13px; color:var(--accent2); font-size:22px; display:flex; align-items:center; justify-content:center; cursor:pointer; user-select:none; box-shadow:0 4px 0 #00000099; transition:transform .07s,box-shadow .12s,background .07s,border-color .07s; -webkit-touch-callout:none; }
@@ -207,6 +214,7 @@
     <button class="menu-btn secondary" id="btn-open-info">ℹ️ Como Jogar</button>
     <button class="menu-btn secondary" id="btn-open-sound">🔊 Som: ON</button>
   </div>
+  <div class="version">v1.0.0</div>
 </div>
 
 <!-- GAME -->
@@ -230,6 +238,19 @@
     <div id="side">
       <div class="panel"><h3>Próxima</h3><canvas id="next-canvas" width="70" height="70"></canvas></div>
       <div class="panel" id="hold-panel"><h3>Guardada</h3><canvas id="hold-canvas" width="70" height="70"></canvas></div>
+      <div class="side-deco">
+        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="4" y="4" width="6" height="6" fill="#ff8c00"/>
+          <rect x="12" y="4" width="6" height="6" fill="#ffb347"/>
+          <rect x="20" y="4" width="6" height="6" fill="#ff8c00"/>
+          <rect x="4" y="12" width="6" height="6" fill="#ffb347"/>
+          <rect x="12" y="12" width="6" height="6" fill="#ff8c00"/>
+          <rect x="20" y="12" width="6" height="6" fill="#ffb347"/>
+          <rect x="4" y="20" width="6" height="6" fill="#ff8c00"/>
+          <rect x="12" y="20" width="6" height="6" fill="#ffb347"/>
+          <rect x="20" y="20" width="6" height="6" fill="#ff8c00"/>
+        </svg>
+      </div>
     </div>
   </div>
   <div id="controls">
@@ -343,13 +364,12 @@ const SFX={
 };
 function vib(p){if(cfg.vib&&navigator.vibrate)navigator.vibrate(p);}
 
-// ── MÚSICA EM 16-BITS COM TRANSIÇÃO SUAVE ─────────
+// ── MÚSICA 16-BITS COM TRANSIÇÃO SUAVE ─────────
 let musicInterval = null;
 let musicActive = false;
 
-// Sequência musical com fade-out harmônico no final
 const bgMusic = [
-  // --- INTRO (calma) ---
+  // Intro suave
   { freqs: [262, 330], type: 'square', dur: 0.4, vol: 0.07 },
   { freqs: [294, 349], type: 'square', dur: 0.4, vol: 0.07 },
   { freqs: [330, 392], type: 'square', dur: 0.4, vol: 0.07 },
@@ -357,8 +377,7 @@ const bgMusic = [
   { freqs: [330, 392], type: 'square', dur: 0.4, vol: 0.07 },
   { freqs: [294, 349], type: 'square', dur: 0.4, vol: 0.07 },
   { freqs: [262, 330], type: 'square', dur: 0.8, vol: 0.09 },
-
-  // --- PARTE A (energética) ---
+  // Parte A
   { freqs: [330, 262], type: 'square', dur: 0.3, vol: 0.09 },
   { freqs: [349, 294], type: 'square', dur: 0.3, vol: 0.09 },
   { freqs: [392, 330], type: 'square', dur: 0.6, vol: 0.12 },
@@ -368,8 +387,7 @@ const bgMusic = [
   { freqs: [262, 196], type: 'square', dur: 0.6, vol: 0.12 },
   { freqs: [294, 220], type: 'square', dur: 0.6, vol: 0.12 },
   { freqs: [330, 262], type: 'square', dur: 0.6, vol: 0.12 },
-
-  // --- PARTE B (mais grave, variação) ---
+  // Parte B
   { freqs: [349, 262], type: 'triangle', dur: 0.3, vol: 0.08 },
   { freqs: [392, 294], type: 'triangle', dur: 0.3, vol: 0.08 },
   { freqs: [440, 330], type: 'triangle', dur: 0.6, vol: 0.1 },
@@ -379,15 +397,13 @@ const bgMusic = [
   { freqs: [294, 196], type: 'triangle', dur: 0.6, vol: 0.1 },
   { freqs: [330, 220], type: 'triangle', dur: 0.6, vol: 0.1 },
   { freqs: [349, 262], type: 'triangle', dur: 0.6, vol: 0.1 },
-
-  // --- PONTE (sustentada, cresce) ---
+  // Ponte
   { freqs: [196, 262, 330], type: 'sawtooth', dur: 0.8, vol: 0.09 },
   { freqs: [220, 294, 349], type: 'sawtooth', dur: 0.8, vol: 0.09 },
   { freqs: [262, 330, 392], type: 'sawtooth', dur: 0.8, vol: 0.09 },
   { freqs: [294, 349, 440], type: 'sawtooth', dur: 0.8, vol: 0.09 },
   { freqs: [330, 392, 523], type: 'sawtooth', dur: 1.2, vol: 0.12 },
-
-  // --- REPETIÇÃO DA PARTE A (mais forte) ---
+  // Repetição A mais forte
   { freqs: [330, 262], type: 'square', dur: 0.3, vol: 0.1 },
   { freqs: [349, 294], type: 'square', dur: 0.3, vol: 0.1 },
   { freqs: [392, 330], type: 'square', dur: 0.6, vol: 0.13 },
@@ -397,15 +413,12 @@ const bgMusic = [
   { freqs: [262, 196], type: 'square', dur: 0.6, vol: 0.13 },
   { freqs: [294, 220], type: 'square', dur: 0.6, vol: 0.13 },
   { freqs: [330, 262], type: 'square', dur: 0.6, vol: 0.13 },
-
-  // --- SAÍDA GRADUAL (fade-out e ponte para o início) ---
-  // Começa a reduzir volume e volta ao tom da intro
+  // Saída gradual (fade-out e ponte para o início)
   { freqs: [330, 262], type: 'square', dur: 0.5, vol: 0.1 },
   { freqs: [294, 220], type: 'square', dur: 0.5, vol: 0.09 },
   { freqs: [262, 196], type: 'square', dur: 0.5, vol: 0.08 },
   { freqs: [220, 175], type: 'square', dur: 0.5, vol: 0.07 },
   { freqs: [196, 147], type: 'square', dur: 0.8, vol: 0.06 },
-  // Último acorde – resolve no primeiro acorde da intro (C4 + E4)
   { freqs: [262, 330], type: 'square', dur: 1.0, vol: 0.05 },
 ];
 
@@ -516,10 +529,15 @@ document.getElementById('btn-play').addEventListener('click',()=>{
   document.getElementById('btn-hold').style.display=cfg.hold?'flex':'none';
   if(cfg.mode==='sprint'){document.getElementById('stat-timer').style.display='';document.getElementById('stat-lines').style.display='none';}
   else{document.getElementById('stat-timer').style.display='none';document.getElementById('stat-lines').style.display='';}
-  if(isMobile){document.getElementById('controls').style.display='flex';document.getElementById('desktop-hint').style.display='none';}
-  else{document.getElementById('controls').style.display='none';document.getElementById('desktop-hint').style.display='block';}
-  resize();startGame();
-  if(cfg.sound && !gameOver && !paused) startMusic();
+  // Esconde botões no desktop
+  if(isMobile){
+    document.getElementById('controls').style.display='flex';
+    document.getElementById('desktop-hint').style.display='none';
+  } else {
+    document.getElementById('controls').style.display='none';
+    document.getElementById('desktop-hint').style.display='block';
+  }
+  resize(); startGame();
 });
 
 document.getElementById('btn-open-info').addEventListener('click',()=>document.getElementById('info-modal').classList.add('show'));
@@ -677,6 +695,11 @@ function startGame(){
   piece=randPiece();next=randPiece();overlay.style.display='none';
   if(cfg.mode==='sprint'){sprintStart=Date.now();timerRaf=requestAnimationFrame(sprintTimer);}
   raf=requestAnimationFrame(loop);
+  // Reinicia a música se o som estiver ativo e o jogo não estiver pausado
+  if(cfg.sound && !gameOver && !paused) {
+    stopMusic();      // para garantir que não haja duplicação
+    startMusic();
+  }
 }
 
 function endGame(win=false){
@@ -691,8 +714,11 @@ function endGame(win=false){
     :`GAME OVER<br><small>Pontos: ${score.toLocaleString()}</small><br><small style="color:var(--accent)">Toque para jogar de novo</small>`;
   overlay.style.display='flex';
   overlay.style.pointerEvents='auto';
-  overlay.onclick=()=>{overlay.style.pointerEvents='none';startGame();};
-  stopMusic();
+  overlay.onclick=()=>{
+    overlay.style.pointerEvents='none';
+    startGame();  // startGame já reinicia a música
+  };
+  stopMusic(); // para a música atual ao game over
 }
 
 function togglePause(){
